@@ -19,15 +19,6 @@ class Square:
         else:
             self.__size = size
 
-    def area(self):
-        """
-        Calculates the area of the square
-
-        Return:
-            the current square are
-        """
-        return self.__size ** 2
-
     @property
     def size(self):
         """
@@ -35,9 +26,9 @@ class Square:
 
         Return: the size attribute is returned
         """
-        return str(self.__size)
+        return self.__size
 
-    #size.setter
+    @size.setter
     def size(self, value):
         """
         A setter function to make changes to the size
@@ -47,7 +38,16 @@ class Square:
         """
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        elif value < 0:
+        if value < 0:
             raise ValueError("size must be >= 0")
-        else:
-            self.__size = value
+        
+        self.__size = value
+
+    def area(self):
+        """
+        Calculates the area of the square
+
+        Return:
+            the current square are
+        """
+        return (self.__size ** 2)
