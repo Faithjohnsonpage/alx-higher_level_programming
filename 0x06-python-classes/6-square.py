@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-"""This Module defines a Square class"""
-
 
 class Square:
     """A class representing a square"""
@@ -13,44 +11,27 @@ class Square:
             size (int): defines the size of a square, default is 0
             position (tuple): defines the position to be considered
         """
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
 
     @property
     def size(self):
-        """
-        A getter fucntion to retrieve the size
-
-        Return: the size attribute is returned
-        """
+        """Getter method to retrieve size"""
         return self.__size
 
     @size.setter
     def size(self, value):
-        """
-        A setter function to make changes to the size
-
-        Args:
-            value: the value to be assigned to size
-        """
+        """Setter method to set size"""
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        if value < 0:
+        elif value < 0:
             raise ValueError("size must be >= 0")
-        self.__size = value
-
-    def area(self):
-        """
-        Calculates the area of the square
-
-        Return:
-            the current square are
-        """
-        return (self.__size ** 2)
+        else:
+            self.__size = value
 
     @property
     def position(self):
-        """getter method to get position"""
+        """Getter method to retrieve position"""
         return self.__position
 
     @position.setter
@@ -63,8 +44,13 @@ class Square:
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
 
+    def area(self):
+        """Calculates the area of the square"""
+        return self.__size ** 2
+
     def my_print(self):
         """Prints in stdout the square with the character #"""
+
         if self.__size == 0:
             print()
         else:
