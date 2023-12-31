@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """My square module"""
 
+
 class Square:
     """A class that defines a square"""
 
@@ -50,7 +51,7 @@ class Square:
         """
         if not isinstance(value, tuple) or \
             len(value) != 2 or not all(isinstance(i, int) for i in value) or \
-            any(i < 0 for i in value):
+                any(i < 0 for i in value):
             raise TypeError("position must be a tuple of 2 positive integers")
         else:
             self.__position = value
