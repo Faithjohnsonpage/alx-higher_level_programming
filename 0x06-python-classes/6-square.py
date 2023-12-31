@@ -11,8 +11,8 @@ class Square:
             size: length of a side of Square
             position: where the square is (coordinates)
         """
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
 
     def __str__(self):
         return self.pos_print()
