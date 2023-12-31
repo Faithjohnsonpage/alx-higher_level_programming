@@ -11,9 +11,11 @@ class Square:
             size: length of a side of Square
             position: where the square is (coordinates)
         """
-        # Initialize private attributes
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
+
+    def __str__(self):
+        return self.pos_print()
 
     @property
     def size(self):
@@ -50,8 +52,8 @@ class Square:
             TypeError: If position is not a tuple of 2 positive integers
         """
         if not isinstance(value, tuple) or \
-            len(value) != 2 or not all(isinstance(i, int) for i in value) or \
-                any(i < 0 for i in value):
+           len(value) != 2 or not all(isinstance(i, int) for i in value) or \
+           any(i < 0 for i in value):
             raise TypeError("position must be a tuple of 2 positive integers")
         else:
             self.__position = value
@@ -60,14 +62,23 @@ class Square:
         """Calculate and return the area of the square"""
         return self.__size ** 2
 
+    def pos_print(self):
+        """Returns the position in spaces"""
+        pos = ""
+        if self.__size == 0:
+            return "\n"
+        for _ in range(self.__position[1]):
+            pos += "\n"
+        for _ in range(self.__size):
+            for _ in range(self.__position[0]):
+                pos += " "
+            for _ in range(self.__size):
+                pos += "#"
+            pos += "\n"
+        return pos
+
     def my_print(self):
         """Print the square using '#' character
         The position attribute is used to determine indentation.
         """
-        if self.__size == 0:
-            print()
-        else:
-            for _ in range(self.__position[1]):
-                print()
-            for _ in range(self.__size):
-                print(" " * self.__position[0] + "#" * self.__size)
+        print(self.pos_print(), end='')
