@@ -63,9 +63,6 @@ class Rectangle:
         else:
             return 2 * (self.__width + self.__height)
 
-    def __repr__(self):
-        return "<{} object at {}>".format(self.__class__.__name__, hex(id(self)))
-
     def __str__(self):
         """Returns a string representation of the rectangle"""
         result = ""
