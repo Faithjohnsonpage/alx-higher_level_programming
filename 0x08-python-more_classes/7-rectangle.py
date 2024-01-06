@@ -92,4 +92,3 @@ class Rectangle:
 
         # When a rectangle is deleted, it decreases by 1
         Rectangle.number_of_instances -= 1
-
