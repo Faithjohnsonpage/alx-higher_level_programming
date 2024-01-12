@@ -23,10 +23,12 @@ class Student:
 
     def reload_from_json(self, json):
         """
-        Replaces all attributes of the Student instance with values from a JSON dictionary.
+        Replaces all attributes of the Student instance
+        with values from a JSON dictionary.
 
         Args:
-            json (dict): A dictionary representing the new values for the attributes.
+            json(dict): A dictionary representing the
+            new values for the attributes.
         """
         if isinstance(json, dict):
             for key, value in json.items():
