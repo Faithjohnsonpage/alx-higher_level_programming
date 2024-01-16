@@ -3,6 +3,7 @@
 A module that defines a Base class
 """
 
+
 class Base:
     """A Base class"""
     __nb_objects = 0
