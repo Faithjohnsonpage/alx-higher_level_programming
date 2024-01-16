@@ -78,7 +78,7 @@ class Rectangle(Base):
         """Setter for y"""
         if not isinstance(y, int):
             raise TypeError("y must be an integer")
-        if x < 0:
+        if y < 0:
             raise ValueError("y must be >= 0")
         self.__y = y
 
@@ -99,6 +99,6 @@ class Rectangle(Base):
 
     def update(self, *args):
         """Assigns an argument to each attribute"""
-        attributes = ['id', '__width', '__height', '__x', '__y']
+        attributes = ['id', 'width', 'height', 'x', 'y']
         for attr, value in zip(attributes, args):
             setattr(self, attr, value)
