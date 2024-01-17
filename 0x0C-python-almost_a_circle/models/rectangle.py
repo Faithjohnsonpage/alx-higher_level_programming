@@ -99,7 +99,7 @@ class Rectangle(Base):
 
     def update(self, *args, **kwargs):
         """Assigns an argument to each attribute"""
-        attributes = ['id', 'width', 'height', 'x', 'y']
+        attributes = ['width', 'height', 'x', 'y', 'id']
         for attr, value in zip(attributes, args):
             setattr(self, attr, value)
 
