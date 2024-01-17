@@ -4,6 +4,9 @@ A module that defines a Base class
 """
 
 
+import json
+
+
 class Base:
     """A Base class"""
     __nb_objects = 0
@@ -14,3 +17,7 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    def to_json_string(list_dictionaries):
+        """Returns the JSON string representation of list_dictionaries"""
+        return json.dumps(list_dictionaries)
