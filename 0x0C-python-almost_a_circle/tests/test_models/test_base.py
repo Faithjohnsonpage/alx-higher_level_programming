@@ -22,6 +22,15 @@ class BaseTestCase(unittest.TestCase):
         json_string = Base.to_json_string([dict_result])
         expected_result = '[{{"id": {}, "width": 10, "height": 7, "x": 2, "y": 8}}]'.format(self.r1.id)
         self.assertEqual(json_string, expected_result)
+
+    def test_to_json_string_empty(self):
+        # Case 1
+        json_string_1 = Base.to_json_string(None)
+        self.assertEqual(json_string_1, '[]')
+
+        # Case 2
+        json_string_2 = Base.to_json_string([])
+        self.assertEqual(json_string_2, '[]')
         
 
 if __name__ == "__main__":
