@@ -306,6 +306,12 @@ class RectangleTestCase(unittest.TestCase):
     def test_to_dictionary(self):
         self.assertEqual(self.r2.to_dictionary(), {'width': 10, 'height': 2, 'x': 2, 'y': 1, 'id': 12})
 
+    def test_from_json_string(self):
+        list_input = [{'id': 89, 'width': 10, 'height': 4}]
+        json_string_3 = Rectangle.to_json_string(list_input)
+        list_result = Rectangle.from_json_string(json_string_3)
+        expected_result_1 = [{'height': 4, 'width': 10, 'id': 89}]
+        self.assertEqual(list_result, expected_result_1)
 
 if __name__ == "__main__":
     unittest.main()
