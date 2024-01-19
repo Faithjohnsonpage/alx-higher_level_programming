@@ -1,6 +1,7 @@
 import unittest
 from models.rectangle import Rectangle
-from models.base import Base
+from unittest.mock import patch, Mock
+import io
 
 
 class RectangleTestCase(unittest.TestCase):
@@ -180,7 +181,36 @@ class RectangleTestCase(unittest.TestCase):
         self.assertEqual(str(self.r2), f"[Rectangle] ({self.r2.id}) 2/1 - 10/2")
         self.assertEqual(str(self.r3), f"[Rectangle] ({self.r3.id}) 0/0 - 5/5")
 
+    def test_display(self):
+        # Case 1
+        self.r7 = Rectangle(2, 1)
+        expected_output1 = "##"
 
+        with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            self.r7.display()
+
+        actual_output1 = mock_stdout.getvalue().strip()
+        self.assertEqual(actual_output1, expected_output1)
+
+        # Case 2
+        self.r8 = Rectangle(2, 1, 1)
+        expected_output2 = " ##"
+
+        with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            self.r8.display()
+
+        actual_output2 = mock_stdout.getvalue().strip()
+        self.assertIn(actual_output2, expected_output2)
+
+        # Case 3
+        self.r9 = Rectangle(2, 1, 1, 1)
+        expected_output3 = "\n ##"
+
+        with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            self.r9.display()
+
+        actual_output3 = mock_stdout.getvalue().strip()
+        self.assertIn(actual_output3, expected_output3)
 
 
 if __name__ == "__main__":
