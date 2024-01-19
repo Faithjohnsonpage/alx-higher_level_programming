@@ -259,40 +259,51 @@ class RectangleTestCase(unittest.TestCase):
         self.assertEqual(self.r2.id, 89)
 
         # Case 6
-        self.r4.update(height=1)
+        self.r4.update(**{ 'id': 89 })
 
         self.assertEqual(self.r4.width, 1000)
-        self.assertEqual(self.r4.height, 1)
+        self.assertEqual(self.r4.height, 2000)
         self.assertEqual(self.r4.x, 500)
         self.assertEqual(self.r4.y, 300)
-        self.assertEqual(self.r4.id, 999)
+        self.assertEqual(self.r4.id, 89)
 
         # Case 7
-        self.r4.update(width=1, x=2)
+        self.r4.update(**{ 'id': 89, 'width': 1 })
 
         self.assertEqual(self.r4.width, 1)
-        self.assertEqual(self.r4.height, 1)
-        self.assertEqual(self.r4.x, 2)
+        self.assertEqual(self.r4.height, 2000)
+        self.assertEqual(self.r4.x, 500)
         self.assertEqual(self.r4.y, 300)
-        self.assertEqual(self.r4.id, 999)
+        self.assertEqual(self.r4.id, 89)
 
         # Case 8
-        self.r4.update(y=1, width=2, x=3, id=89)
+        self.r4.update(**{ 'id': 89, 'width': 1, 'height': 2 })
 
-        self.assertEqual(self.r4.width, 2)
-        self.assertEqual(self.r4.height, 1)
-        self.assertEqual(self.r4.x, 3)
-        self.assertEqual(self.r4.y, 1)
+        self.assertEqual(self.r4.width, 1)
+        self.assertEqual(self.r4.height, 2)
+        self.assertEqual(self.r4.x, 500)
+        self.assertEqual(self.r4.y, 300)
         self.assertEqual(self.r4.id, 89)
 
         # Case 9
-        self.r4.update(x=1, height=2, y=3, width=4)
+        self.r4.update(**{ 'id': 89, 'width': 1, 'height': 2, 'x': 3 })
 
-        self.assertEqual(self.r4.width, 4)
+        self.assertEqual(self.r4.width, 1)
         self.assertEqual(self.r4.height, 2)
-        self.assertEqual(self.r4.x, 1)
-        self.assertEqual(self.r4.y, 3)
+        self.assertEqual(self.r4.x, 3)
+        self.assertEqual(self.r4.y, 300)
         self.assertEqual(self.r4.id, 89)
+
+        # Case 10
+        self.r4.update(**{ 'id': 89, 'width': 1, 'height': 2, 'x': 3, 'y': 4 })
+
+        self.assertEqual(self.r4.width, 1)
+        self.assertEqual(self.r4.height, 2)
+        self.assertEqual(self.r4.x, 3)
+        self.assertEqual(self.r4.y, 4)
+        self.assertEqual(self.r4.id, 89)
+
+
 
 
 if __name__ == "__main__":
