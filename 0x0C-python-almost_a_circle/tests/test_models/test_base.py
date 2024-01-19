@@ -11,5 +11,10 @@ class BaseTestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_init_valid_values(self):
+        self.assertEqual(self.b1.id, 1)
+        self.assertEqual(self.b2.id, 2)
+        self.assertEqual(self.b3.id, 3)
+
 if __name__ == "__main__":
     unittest.main()
