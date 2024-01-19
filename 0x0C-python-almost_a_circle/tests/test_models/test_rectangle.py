@@ -212,6 +212,52 @@ class RectangleTestCase(unittest.TestCase):
         actual_output3 = mock_stdout.getvalue().strip()
         self.assertIn(actual_output3, expected_output3)
 
+    def test_update(self, *args, **kwargs):
+        # Case 1
+        self.r2.update(89)
+
+        self.assertEqual(self.r2.width, 10)
+        self.assertEqual(self.r2.height, 2)
+        self.assertEqual(self.r2.x, 2)
+        self.assertEqual(self.r2.y, 1)
+        self.assertEqual(self.r2.id, 89)
+
+        # Case 2
+        self.r2.update(89, 2)
+
+        self.assertEqual(self.r2.width, 2)
+        self.assertEqual(self.r2.height, 2)
+        self.assertEqual(self.r2.x, 2)
+        self.assertEqual(self.r2.y, 1)
+        self.assertEqual(self.r2.id, 89)
+
+        # Case 3
+        self.r2.update(89, 2, 3)
+
+        self.assertEqual(self.r2.width, 2)
+        self.assertEqual(self.r2.height, 3)
+        self.assertEqual(self.r2.x, 2)
+        self.assertEqual(self.r2.y, 1)
+        self.assertEqual(self.r2.id, 89)
+
+        # Case 4
+        self.r2.update(89, 2, 3, 4)
+
+        self.assertEqual(self.r2.width, 2)
+        self.assertEqual(self.r2.height, 3)
+        self.assertEqual(self.r2.x, 4)
+        self.assertEqual(self.r2.y, 1)
+        self.assertEqual(self.r2.id, 89)
+
+        # Case 5
+        self.r2.update(89, 2, 3, 4, 5)
+
+        self.assertEqual(self.r2.width, 2)
+        self.assertEqual(self.r2.height, 3)
+        self.assertEqual(self.r2.x, 4)
+        self.assertEqual(self.r2.y, 5)
+        self.assertEqual(self.r2.id, 89)
+
 
 if __name__ == "__main__":
     unittest.main()
