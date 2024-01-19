@@ -303,7 +303,8 @@ class RectangleTestCase(unittest.TestCase):
         self.assertEqual(self.r4.y, 4)
         self.assertEqual(self.r4.id, 89)
 
-
+    def test_to_dictionary(self):
+        self.assertEqual(self.r2.to_dictionary(), {'width': 10, 'height': 2, 'x': 2, 'y': 1, 'id': 12})
 
 
 if __name__ == "__main__":
