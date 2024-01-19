@@ -61,6 +61,12 @@ class RectangleTestCase(unittest.TestCase):
         with self.assertRaises(TypeError):
             Rectangle(3)
 
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Rectangle(3, 5, 'a')
+
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Rectangle(3, 5, 6, '1')
+
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Rectangle("string", 4)
 
@@ -73,19 +79,109 @@ class RectangleTestCase(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "height must be an integer"):
             Rectangle(5, 4.4)
 
-
         with self.assertRaisesRegex(ValueError, "width must be > 0"):
             Rectangle(0, 4)
+
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Rectangle(-1, 4)
 
         with self.assertRaisesRegex(ValueError, "height must be > 0"):
             Rectangle(3, -3)
 
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            Rectangle(3, 0)
 
         with self.assertRaisesRegex(ValueError, "x must be >= 0"):
             Rectangle(5, 4, -1)
 
         with self.assertRaisesRegex(ValueError, "y must be >= 0"):
             Rectangle(5, 4, 1, -3)
+
+    def test_width(self):
+        self.r2.width = 1
+        
+        self.assertEqual(self.r2.width, 1)
+        self.assertEqual(self.r2.height, 2)
+        self.assertEqual(self.r2.x, 2)
+        self.assertEqual(self.r2.y, 1)
+        self.assertEqual(self.r2.id, 12)
+
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            self.r2.width = -1
+
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            self.r2.width = 0
+
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            self.r2.width = '1'
+
+    def test_x(self):
+        self.r2.x = 1
+
+        self.assertEqual(self.r2.width, 10)
+        self.assertEqual(self.r2.height, 2)
+        self.assertEqual(self.r2.x, 1)
+        self.assertEqual(self.r2.y, 1)
+        self.assertEqual(self.r2.id, 12)
+
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
+            self.r2.x = -1
+
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            self.r2.x = '1'
+
+    def test_y(self):
+        self.r2.y = 5
+        
+        self.assertEqual(self.r2.width, 10)
+        self.assertEqual(self.r2.height, 2)
+        self.assertEqual(self.r2.x, 2)
+        self.assertEqual(self.r2.y, 5)
+        self.assertEqual(self.r2.id, 12)
+
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
+            self.r2.y = -1
+
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            self.r2.y = '1'
+
+    def test_height(self):
+        self.r2.height = 1
+
+        self.assertEqual(self.r2.width, 10)
+        self.assertEqual(self.r2.height, 1)
+        self.assertEqual(self.r2.x, 2)
+        self.assertEqual(self.r2.y, 1)
+        self.assertEqual(self.r2.id, 12)
+
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            self.r2.height = -1
+
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            self.r2.height = 0
+
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            self.r2.height = '1'
+
+
+    def test_area(self):
+        self.assertEqual(self.r1.area(), 20)
+        self.assertEqual(self.r2.area(), 20)
+        self.assertEqual(self.r3.area(), 25)
+        self.assertEqual(self.r4.area(), 2000000)
+        self.assertEqual(self.r5.area(), 2)
+
+        self.r4.height = 3
+        self.r4.width = 2
+        self.assertEqual(self.r4.area(), 6)
+
+    def test_str(self):
+        self.assertEqual(str(self.r1), f"[Rectangle] ({self.r1.id}) 0/0 - 10/2")
+        self.assertEqual(str(self.r2), f"[Rectangle] ({self.r2.id}) 2/1 - 10/2")
+        self.assertEqual(str(self.r3), f"[Rectangle] ({self.r3.id}) 0/0 - 5/5")
+
+
+
 
 if __name__ == "__main__":
     unittest.main()
