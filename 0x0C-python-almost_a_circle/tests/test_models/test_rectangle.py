@@ -1,5 +1,6 @@
 import unittest
 from models.rectangle import Rectangle
+from models.base import Base
 
 
 class RectangleTestCase(unittest.TestCase):
@@ -9,6 +10,8 @@ class RectangleTestCase(unittest.TestCase):
         self.r2 = Rectangle(10, 2, 2, 1, 12)
         self.r3 = Rectangle(5, 5)
         self.r4 = Rectangle(1000, 2000, 500, 300, 999)
+        self.r5 = Rectangle(1, 2, 4)
+        self.r6 = Rectangle(1, 2, 3, 4)
 
     def tearDown(self):
         # Clean up resources if needed
@@ -38,6 +41,18 @@ class RectangleTestCase(unittest.TestCase):
         self.assertEqual(self.r4.x, 500)
         self.assertEqual(self.r4.y, 300)
         self.assertEqual(self.r4.id, 999)
+
+    def test_init_x_specified(self):
+        self.assertEqual(self.r5.width, 1)
+        self.assertEqual(self.r5.height, 2)
+        self.assertEqual(self.r5.x, 4)
+        self.assertEqual(self.r5.y, 0)
+
+    def test_init_y_specified(self):
+        self.assertEqual(self.r6.width, 1)
+        self.assertEqual(self.r6.height, 2)
+        self.assertEqual(self.r6.x, 3)
+        self.assertEqual(self.r6.y, 4)
 
     def test_init_invalid_values(self):
         with self.assertRaises(TypeError):
