@@ -1,7 +1,9 @@
 -- This script lists all records of the table second_table
--- of the database hbtn_0c_0
+-- of the database hbtn_0c_0.
+-- Rows without a name value are not listed.
 
-SELECT *
+
+SELECT score, name
 FROM second_table
-WHERE name != NULL
+WHERE name IS NOT NULL
 ORDER BY score DESC
