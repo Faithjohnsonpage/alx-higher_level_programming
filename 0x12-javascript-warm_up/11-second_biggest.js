@@ -17,5 +17,5 @@ if (process.argv.length <= 3) {
     }
   }
 
-  console.log(secondMax === -Infinity ? '0' : secondMax);
+  console.log(secondMax);
 }
