@@ -14,7 +14,7 @@ if __name__ == '__main__':
     state_name = sys.argv[4]
 
     # Construct the SQL query using format method
-    sql_query = "SELECT * FROM states WHERE name = '{}' \
+    sql_query = "SELECT * FROM states WHERE name LIKE BINARY '{}' \
                  ORDER BY id".format(state_name)
 
     cur.execute(sql_query)
