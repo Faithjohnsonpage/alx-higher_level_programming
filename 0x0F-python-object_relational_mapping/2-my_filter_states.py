@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     # Construct the SQL query using format method
     sql_query = "SELECT * FROM states WHERE name = '{}' \
-                 ORDER BY id ASC".format(state_name)
+                 ORDER BY state.id".format(state_name)
 
     cur.execute(sql_query)
     rows = cur.fetchall()
