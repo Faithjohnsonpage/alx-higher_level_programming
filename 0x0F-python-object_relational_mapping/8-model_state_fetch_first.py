@@ -14,10 +14,7 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    query = session.query(State.id, State.name).order_by(State.id)
-
-    # Execute the query to fetch results
-    row = query.first()
+    row = session.query(State.id, State.name).order_by(State.id).first()
 
     if row:
         print("{}: {}".format(row.id, row.name))
