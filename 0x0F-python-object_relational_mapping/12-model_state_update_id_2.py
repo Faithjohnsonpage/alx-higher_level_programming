@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""This script adds the State object “Louisiana” to
-the database hbtn_0e_6_usa"""
+"""This script changes the name of a State object
+from the database hbtn_0e_6_usa"""
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -12,16 +12,11 @@ if __name__ == '__main__':
                             argv[1], argv[2], argv[3]), pool_pre_ping=True)
 
     Base.metadata.create_all(engine)
-    new_state = State(name='Louisiana')
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Add new_state to the session
-    session.add(new_state)
+    query = session.query(State).filter(State.id == 2).first()
 
-    # Commit changes to the database
+    query.name = 'New Mexico'
+
     session.commit()
-    new_state_id = session.query(State.id).\
-        filter(State.name == 'Louisiana').scalar()
-
-    print(new_state_id)
