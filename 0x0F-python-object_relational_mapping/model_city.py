@@ -4,6 +4,7 @@
 from model_state import Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 
+
 class City(Base):
     """A City class that defines a Table `cities` and its Columns"""
 
