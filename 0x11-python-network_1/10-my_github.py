@@ -10,4 +10,5 @@ if __name__ == "__main__":
     basic = HTTPBasicAuth(argv[1], argv[2])
     response = requests.get("https://api.github.com/user", auth=basic)
     user_data = response.json()
-    print(user_data.get('id'))
+    #print(user_data.get('id'))
+    print(user_data)
