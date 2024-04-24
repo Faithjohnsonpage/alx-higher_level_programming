@@ -3,7 +3,7 @@
 const request = require('request');
 
 const url = process.argv[2];
-const urlId = 'https://swapi-api.alx-tools.com/api/people/18/';
+const id = '18';
 
 let data = '';
 let count = 0;
@@ -18,7 +18,7 @@ request
     for (let i = 0; i < results.length; i++) {
       const characters = results[i].characters;
       for (let j = 0; j < characters.length; j++) {
-        if (characters[j] === urlId) {
+        if (characters[j].includes(id)) {
           count++;
         }
       }
