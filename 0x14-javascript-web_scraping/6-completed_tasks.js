@@ -1,31 +1,23 @@
 #!/usr/bin/node
 
 const request = require('request');
-
 const url = process.argv[2];
 
-let data = '';
-const tasks = {};
-request
-  .get(url)
-  .on('data', (chunk) => {
-    data += chunk;
-  })
-  .on('end', () => {
-    const jsonContent = JSON.parse(data);
-    let count = 0;
-    let i = 1;
-    jsonContent.forEach((element) => {
-      if (element.userId === i) {
-        if (element.completed === true) {
-          count++;
-        }
+request.get(url, { json: true }, (error, response, body) => {
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  const tasksCompleted = {};
+  body.forEach((todo) => {
+    if (todo.completed) {
+      if (!tasksCompleted[todo.userId]) {
+        tasksCompleted[todo.userId] = 1;
       } else {
-        tasks[i] = count;
-        i++;
-        count = (element.completed === true) ? 1 : 0;
+        tasksCompleted[todo.userId] += 1;
       }
-    });
-    tasks[i] = count;
-    console.log(tasks);
+    }
   });
+  console.log(tasksCompleted);
+});
