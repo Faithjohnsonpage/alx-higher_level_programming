@@ -5,8 +5,6 @@ const request = require('request');
 const url = process.argv[2];
 
 let data = '';
-let i = 1;
-let count = 0;
 const tasks = {};
 request
   .get(url)
@@ -15,6 +13,8 @@ request
   })
   .on('end', () => {
     const jsonContent = JSON.parse(data);
+    let count = 0;
+    let i = 1;
     jsonContent.forEach((element) => {
       if (element.userId === i) {
         if (element.completed === true) {
@@ -23,11 +23,7 @@ request
       } else {
         tasks[i] = count;
         i++;
-        if (element.completed === true) {
-          count = 1;
-        } else {
-          count = 0;
-        }
+        count = (element.completed === true) ? 1 : 0;
       }
     });
     tasks[i] = count;
